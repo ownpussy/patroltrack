@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PatrolTrack - Daily Ops & Location History</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>PatrolTrack</h1>
+    <div id="status-bar">
+      <span id="duty-status">Off Duty</span>
+      <button id="duty-toggle">Clock In</button>
+    </div>
+  </header>
+
+  <nav>
+    <button class="nav-btn active" data-view="map">Map</button>
+    <button class="nav-btn" data-view="log">Log</button>
+    <button class="nav-btn" data-view="stats">Stats</button>
+    <button class="nav-btn" data-view="reports">Reports</button>
+  </nav>
+
+  <main>
+    <section id="map-view" class="view active">
+      <div id="map"></div>
+      <div class="map-controls">
+        <button id="center-btn">Center on Me</button>
+        <button id="scan-checkpoint">Scan Checkpoint</button>
+        <button id="log-incident">Log Incident</button>
+        <label>
+          Auto-track every
+          <select id="track-interval">
+            <option value="0">Off</option>
+            <option value="30">30s</option>
+            <option value="60" selected>1 min</option>
+            <option value="300">5 min</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section id="log-view" class="view">
+      <h2>Activity Log</h2>
+      <div id="log-list"></div>
+      <button id="clear-log" class="danger">Clear All Data</button>
+    </section>
+
+    <section id="stats-view" class="view">
+      <h2>Stats</h2>
+      <div id="stats-content"></div>
+      <button id="export-btn">Export JSON</button>
+    </section>
+
+    <section id="reports-view" class="view">
+      <h2>Daily Report</h2>
+      <div id="report-content"></div>
+      <button id="copy-report">Copy Report</button>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modal-title">Log Entry</h3>
+      <textarea id="modal-note" placeholder="Notes / details..."></textarea>
+      <div class="modal-actions">
+        <button id="modal-save">Save</button>
+        <button id="modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
